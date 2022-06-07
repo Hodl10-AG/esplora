@@ -6,6 +6,7 @@ const items  = process.env.MENU_ITEMS && JSON.parse(process.env.MENU_ITEMS)
     , active = process.env.MENU_ACTIVE
 
 const staticRoot = process.env.STATIC_ROOT || ''
+const otherTheme = { dark: 'light', light: 'dark' }
 
 export default ({ t, theme, page }) =>
 
