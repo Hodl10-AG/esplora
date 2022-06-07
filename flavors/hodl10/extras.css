@@ -1,8 +1,8 @@
 .navbar-brand::before {
     background: url(img/icons/HODL10_AG-logo-text.png);
     background-size: cover;
-    width: 240px;
-    height: 93px;
+    width: 320px;
+    height: 88px;
     margin: 0;
     background-repeat: no-repeat;
 }
@@ -45,5 +45,14 @@
         height:54px;
     }
 }
+
+.switch-theme-icon{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: url(img/icons/switch-icon.png);
+    background-size: cover;
+}
+
 
 
