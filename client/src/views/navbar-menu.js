@@ -1,6 +1,6 @@
 import Snabbdom from 'snabbdom-pragma'
 import navToggle from './nav-toggle'
-
+import {updateQuery} from "../util";
 
 const items  = process.env.MENU_ITEMS && JSON.parse(process.env.MENU_ITEMS)
     , active = process.env.MENU_ACTIVE
