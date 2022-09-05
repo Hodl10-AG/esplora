@@ -25,7 +25,7 @@ ELECTRS_NETWORK=${NETWORK}
 
 DAEMON_DIR="/data/$DAEMON"
 if [ "$DAEMON-$NETWORK" == "bitcoin-testnet" ]; then
-  DAEMON_DIR="$DAEMON_DIR/testnet"
+  DAEMON_DIR="$DAEMON_DIR/testnet3"
 elif [ "$DAEMON-$NETWORK" == "bitcoin-signet" ]; then
   DAEMON_DIR="$DAEMON_DIR/signet"
 elif [ "$DAEMON-$NETWORK" == "liquid-mainnet" ]; then
@@ -153,18 +153,25 @@ function preprocess(){
 }
 
 if [ "$MODE" == "explorer" ]; then
-    mkdir -p /etc/service/prerenderer/log /etc/service/nginx/log /etc/service/electrs/log
-    mkdir -p /data/logs/prerenderer /data/logs/nginx /data/logs/electrs
+    mkdir -p /etc/service/{prerenderer,nginx,electrs,websocket}/log
+    mkdir -p /data/logs/{prerenderer,nginx,electrs,websocket}
+
     preprocess /srv/explorer/source/contrib/runits/electrs.runit /etc/service/electrs/run
     cp /srv/explorer/source/contrib/runits/electrs-log.runit /etc/service/electrs/log/run
     cp /srv/explorer/source/contrib/runits/electrs-log-config.runit /data/logs/electrs/config
+
     cp /srv/explorer/source/contrib/runits/nginx.runit /etc/service/nginx/run
     cp /srv/explorer/source/contrib/runits/nginx-log.runit /etc/service/nginx/log/run
     cp /srv/explorer/source/contrib/runits/nginx-log-config.runit /data/logs/nginx/config
+
     preprocess /srv/explorer/source/contrib/runits/prerenderer.runit /etc/service/prerenderer/run
     cp /srv/explorer/source/contrib/runits/prerenderer-log.runit /etc/service/prerenderer/log/run
     cp /srv/explorer/source/contrib/runits/prerenderer-log-config.runit /data/logs/prerenderer/config
     chmod +x /etc/service/prerenderer/run /etc/service/electrs/run
+
+    cp /srv/explorer/source/contrib/runits/websocket.runit /etc/service/websocket/run
+    cp /srv/explorer/source/contrib/runits/websocket-log.runit /etc/service/websocket/log/run
+    cp /srv/explorer/source/contrib/runits/websocket-log-config.runit /data/logs/websocket/config
 elif [ "$MODE" != "private-bridge" ] && [ "$MODE" != "public-bridge" ]; then
     echo "Mode can only be private-bridge, public-bridge or explorer"
     exit 1
@@ -282,9 +289,11 @@ if [ -n "$SYNC_SOURCE" ]; then
   if [ "${DAEMON}-${NETWORK}" == "liquid-mainnet" ]; then
     cli_bitcoin stop
   fi
+  sleep 2 # without this, the download below would occasionally start while the terminating bitcoind is still flushing its mempool.dat
   # then fetch a recent mempool.dat,
-  curl -f -s -u sync:$SYNC_SECRET -o $DAEMON_DIR/mempool.dat $SYNC_SOURCE/mempool || true
-  curl -f -s -u sync:$SYNC_SECRET -o $DAEMON_DIR/fee_estimates.dat $SYNC_SOURCE/fee_estimates || true
+  curl -v -u sync:$SYNC_SECRET -o $DAEMON_DIR/mempool.dat $SYNC_SOURCE/mempool || true
+  curl -v -u sync:$SYNC_SECRET -o $DAEMON_DIR/fee_estimates.dat $SYNC_SOURCE/fee_estimates || true
+  ls -l $DAEMON_DIR/{mempool,fee_estimates}.dat || true
   # and let the runit services take over
 fi
 

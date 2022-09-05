@@ -17,7 +17,6 @@ before_script:
   - gcloud auth activate-service-account --key-file=$TMPF
   - gcloud auth list
   - gcloud --version
-  - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USER" --password-stdin
 
 test_docker_build_image:
   image: docker@sha256:16a1f4b3e64c5a8e1ac80987bc2b8907dbc1c79c1b13be0781f4d24a2072e698
@@ -199,10 +198,10 @@ plan_bitcoin_mainnet:
        terraform init -input=false &&
        terraform plan
         -var "docker_tag_explorer=blockstream/esplora:$CI_COMMIT_SHA"
-        -var "cluster_size=$NODE_CLUSTER_SIZE"
-        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE"
-        -var "instance_type=$NODE_INSTANCE_TYPE"
-        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE"
+        -var "cluster_size=$NODE_CLUSTER_SIZE_BTCM"
+        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE_BTCM"
+        -var "instance_type=$NODE_INSTANCE_TYPE_BTCM"
+        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE_BTCM"
         -var "regions=$REGIONS"
         -var "zones=$ZONES"
         -var "min_ready_sec=300"
@@ -230,10 +229,10 @@ deploy_bitcoin_mainnet:
        terraform init -input=false &&
        terraform apply
         -var "docker_tag_explorer=blockstream/esplora:$CI_COMMIT_SHA"
-        -var "cluster_size=$NODE_CLUSTER_SIZE"
-        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE"
-        -var "instance_type=$NODE_INSTANCE_TYPE"
-        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE"
+        -var "cluster_size=$NODE_CLUSTER_SIZE_BTCM"
+        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE_BTCM"
+        -var "instance_type=$NODE_INSTANCE_TYPE_BTCM"
+        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE_BTCM"
         -var "regions=$REGIONS"
         -var "zones=$ZONES"
         -var "min_ready_sec=300"
@@ -253,10 +252,10 @@ plan_bitcoin_testnet:
        terraform init -input=false &&
        terraform plan
         -var "docker_tag_explorer=blockstream/esplora:$CI_COMMIT_SHA"
-        -var "cluster_size=$NODE_CLUSTER_SIZE"
-        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE"
-        -var "instance_type=$NODE_INSTANCE_TYPE"
-        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE"
+        -var "cluster_size=$NODE_CLUSTER_SIZE_BTCT"
+        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE_BTCT"
+        -var "instance_type=$NODE_INSTANCE_TYPE_BTCT"
+        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE_BTCT"
         -var "regions=$REGIONS"
         -var "zones=$ZONES"
         -var "min_ready_sec=60"
@@ -284,10 +283,10 @@ deploy_bitcoin_testnet:
        terraform init -input=false &&
        terraform apply
         -var "docker_tag_explorer=blockstream/esplora:$CI_COMMIT_SHA"
-        -var "cluster_size=$NODE_CLUSTER_SIZE"
-        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE"
-        -var "instance_type=$NODE_INSTANCE_TYPE"
-        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE"
+        -var "cluster_size=$NODE_CLUSTER_SIZE_BTCT"
+        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE_BTCT"
+        -var "instance_type=$NODE_INSTANCE_TYPE_BTCT"
+        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE_BTCT"
         -var "regions=$REGIONS"
         -var "zones=$ZONES"
         -var "min_ready_sec=60"
@@ -307,10 +306,10 @@ plan_liquid_mainnet:
        terraform init -input=false &&
        terraform plan
         -var "docker_tag_explorer=blockstream/esplora:$CI_COMMIT_SHA"
-        -var "cluster_size=$NODE_CLUSTER_SIZE"
-        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE"
-        -var "instance_type=$NODE_INSTANCE_TYPE"
-        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE"
+        -var "cluster_size=$NODE_CLUSTER_SIZE_LQM"
+        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE_LQM"
+        -var "instance_type=$NODE_INSTANCE_TYPE_LQM"
+        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE_LQM"
         -var "regions=$REGIONS"
         -var "zones=$ZONES"
         -var "min_ready_sec=60"
@@ -338,10 +337,10 @@ deploy_liquid_mainnet:
        terraform init -input=false &&
        terraform apply
         -var "docker_tag_explorer=blockstream/esplora:$CI_COMMIT_SHA"
-        -var "cluster_size=$NODE_CLUSTER_SIZE"
-        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE"
-        -var "instance_type=$NODE_INSTANCE_TYPE"
-        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE"
+        -var "cluster_size=$NODE_CLUSTER_SIZE_LQM"
+        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE_LQM"
+        -var "instance_type=$NODE_INSTANCE_TYPE_LQM"
+        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE_LQM"
         -var "regions=$REGIONS"
         -var "zones=$ZONES"
         -var "min_ready_sec=60"
@@ -361,10 +360,10 @@ plan_liquid_testnet:
        terraform init -input=false &&
        terraform plan
         -var "docker_tag_explorer=blockstream/esplora:$CI_COMMIT_SHA"
-        -var "cluster_size=$NODE_CLUSTER_SIZE"
-        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE"
-        -var "instance_type=$NODE_INSTANCE_TYPE"
-        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE"
+        -var "cluster_size=$NODE_CLUSTER_SIZE_LQT"
+        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE_LQT"
+        -var "instance_type=$NODE_INSTANCE_TYPE_LQT"
+        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE_LQT"
         -var "regions=$REGIONS"
         -var "zones=$ZONES"
         -var "min_ready_sec=60"
@@ -392,10 +391,10 @@ deploy_liquid_testnet:
        terraform init -input=false &&
        terraform apply
         -var "docker_tag_explorer=blockstream/esplora:$CI_COMMIT_SHA"
-        -var "cluster_size=$NODE_CLUSTER_SIZE"
-        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE"
-        -var "instance_type=$NODE_INSTANCE_TYPE"
-        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE"
+        -var "cluster_size=$NODE_CLUSTER_SIZE_LQT"
+        -var "preemptible_cluster_size=$NODE_PREEMPTIBLE_CLUSTER_SIZE_LQT"
+        -var "instance_type=$NODE_INSTANCE_TYPE_LQT"
+        -var "preemptible_instance_type=$NODE_PREEMPTIBLE_INSTANCE_TYPE_LQT"
         -var "regions=$REGIONS"
         -var "zones=$ZONES"
         -var "min_ready_sec=60"
