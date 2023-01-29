@@ -1,0 +1,58 @@
+.navbar-brand::before {
+    background: url(img/icons/HODL10_AG-logo-text.png);
+    background-size: cover;
+    width: 320px;
+    height: 88px;
+    margin: 0;
+    background-repeat: no-repeat;
+}
+
+.footer-logo::before {
+    width: 240px;
+    height: 93px;
+    background-image: url(img/icons/HODL10_AG-logo-text.png);
+    background-size: 100%;
+    content: ' ';
+    display: block;
+}
+.footer-logo {
+    margin-right: 0px;
+}
+.footer-links {
+    margin-top: 5px;
+}
+.theme-light .footer-logo::before {
+    background-image: url(img/icons/HODL10_AG-logo-text.png);
+}
+
+@media only screen and (max-width: 1000px) {
+    .footer-logo::before {
+        width: 200px;
+        height: 83px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .footer-logo::before {
+        margin-top: 30px;
+    }
+
+    .navbar-brand::before {
+        background: url(img/icons/HODL10_AG-logo.png);
+        background-size: 54px 54px;
+        background-repeat: no-repeat;
+        width: 54px;
+        height:54px;
+    }
+}
+
+.switch-theme-icon{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: url(img/icons/switch-icon.png);
+    background-size: cover;
+}
+
+
+
