@@ -5,7 +5,7 @@
     "dev-server": "babel-node dev-server.js",
     "prerender-server": "cd prerender-server && npm start",
     "postinstall": "(cd client && npm install) && (cd prerender-server && npm install)",
-    "dist": "./build.sh hodl10",
+    "dist": "./build.sh blockfinance",
     "l10n:fetch": "./lang/util/fetch-transifex.sh",
     "l10n:update-strings": "./lang/util/update-strings.sh"
   },
