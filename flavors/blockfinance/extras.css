@@ -54,3 +54,12 @@
         height:54px;
     }
 }
+
+.switch-theme-icon{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: url(img/icons/switch-icon.png);
+    background-size: cover;
+}
+
