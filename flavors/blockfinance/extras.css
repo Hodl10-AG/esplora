@@ -1,7 +1,16 @@
 .navbar-brand::before {
-    background: url(img/icons/HODL10_AG-logo-text.png);
+    background: url(img/icons/ECO_color_white_h93px.png);
     background-size: cover;
-    width: 320px;
+    width: 483px;
+    height: 88px;
+    margin: 0;
+    background-repeat: no-repeat;
+}
+
+.theme-light .navbar-brand::before {
+    background: url(img/icons/ECO_color_black_h93px.png);
+    background-size: cover;
+    width: 483px;
     height: 88px;
     margin: 0;
     background-repeat: no-repeat;
@@ -10,9 +19,9 @@
 .footer-logo::before {
     width: 240px;
     height: 93px;
-    background-image: url(img/icons/HODL10_AG-logo-text.png);
+    background-image: url(img/icons/ECO_color_black_h93px.png);
     background-size: 100%;
-    content: ' ';
+    content: ' ';-
     display: block;
 }
 .footer-logo {
@@ -22,12 +31,12 @@
     margin-top: 5px;
 }
 .theme-light .footer-logo::before {
-    background-image: url(img/icons/HODL10_AG-logo-text.png);
+    background-image: url(img/icons/ECO_color_black_h93px.png);
 }
 
 @media only screen and (max-width: 1000px) {
     .footer-logo::before {
-        width: 200px;
+        width: 483px;
         height: 83px;
     }
 }
@@ -38,21 +47,10 @@
     }
 
     .navbar-brand::before {
-        background: url(img/icons/HODL10_AG-logo.png);
+        background: url(img/icons/ECO_mark_color_240px.png);
         background-size: 54px 54px;
         background-repeat: no-repeat;
         width: 54px;
         height:54px;
     }
 }
-
-.switch-theme-icon{
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    background: url(img/icons/switch-icon.png);
-    background-size: cover;
-}
-
-
-
