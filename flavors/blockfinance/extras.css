@@ -53,6 +53,14 @@
         width: 54px;
         height:54px;
     }
+
+    .theme-light .navbar-brand::before {
+        background: url(img/icons/ECO_mark_color_240px.png);
+        background-size: 54px 54px;
+        background-repeat: no-repeat;
+        width: 54px;
+        height:54px;
+    }
 }
 
 .switch-theme-icon{
