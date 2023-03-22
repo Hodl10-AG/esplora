@@ -1,9 +1,9 @@
 terraform {
-  required_version = "> 0.13.0"
+  required_version = "> 1.3.7"
 
   required_providers {
-    google      = "~> 3.89.0"
-    google-beta = "~> 3.89.0"
+    google      = "~> 4.52.0"
+    google-beta = "~> 4.52.0"
   }
 
   backend "gcs" {
@@ -68,7 +68,7 @@ module "tor" {
   docker_tag               = var.docker_tag_tor
   hosts_onion              = var.hosts_onion
   kms_key                  = element(concat(google_kms_crypto_key.esplora-crypto-key.*.name, tolist([""])), 0)
-  kms_key_link             = element(concat(google_kms_crypto_key.esplora-crypto-key.*.self_link, tolist([""])), 0)
+  kms_key_link             = element(concat(google_kms_crypto_key.esplora-crypto-key.*.id, tolist([""])), 0)
   kms_key_ring             = element(concat(google_kms_key_ring.esplora-key-ring.*.name, tolist([""])), 0)
   kms_location             = var.kms_location
   service_account_prom     = terraform.workspace == "main" ? module.prometheus.service_account : data.terraform_remote_state.main.outputs.prometheus_service_account
@@ -86,6 +86,7 @@ module "bitcoin-testnet" {
   mempooldat                  = var.mempooldat
   fullurl                     = var.fullurl
   network                     = "testnet"
+  disk_type                   = var.disk_type
   instance_type               = var.instance_type
   preemptible_instance_type   = var.preemptible_instance_type
   size                        = var.cluster_size
@@ -109,6 +110,7 @@ module "bitcoin-mainnet" {
   name                        = "bitcoin-mainnet"
   daemon                      = "bitcoin"
   network                     = "mainnet"
+  disk_type                   = var.disk_type
   mempooldat                  = var.mempooldat
   fullurl                     = var.fullurl
   instance_type               = var.instance_type
@@ -134,6 +136,7 @@ module "liquid-mainnet" {
   name                        = "liquid-mainnet"
   daemon                      = "liquid"
   network                     = "mainnet"
+  disk_type                   = var.disk_type
   mempooldat                  = var.mempooldat
   fullurl                     = var.fullurl
   instance_type               = var.instance_type
@@ -159,6 +162,7 @@ module "liquid-testnet" {
   name                        = "liquid-testnet"
   daemon                      = "liquid"
   network                     = "testnet"
+  disk_type                   = var.disk_type
   mempooldat                  = var.mempooldat
   fullurl                     = var.fullurl
   instance_type               = var.instance_type
